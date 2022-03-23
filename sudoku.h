@@ -56,7 +56,7 @@ struct UserSelection makeSelection(void);
 
 int updateSudoku(Square *** sudoku, int row, int column);
 
-int updateSudoku2(Square *** puzzle, UserSelection);
+Square ***  updateSudoku2(Square *** puzzle, UserSelection);
 
 int checkPuzzle(Square *** sudoku, Box ** boxes);
 

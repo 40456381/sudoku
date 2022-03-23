@@ -192,7 +192,7 @@ UserSelection makeSelection()
 	return userpicks;
 }
 
-int updateSudoku2(Square *** puzzle, UserSelection userpicks)
+Square *** updateSudoku2(Square *** puzzle, UserSelection userpicks)
 {
 			printf("what is userpicks.numberChoice %d \n", userpicks.numberChoice);
 			printf("what is userpicks.row  %d \n", userpicks.row);
@@ -225,19 +225,19 @@ int updateSudoku2(Square *** puzzle, UserSelection userpicks)
 						}
 						else if (x == 0) //the position is empty so we can update the array
 						{
-							printf("updateing the array\n");
+							printf("updating the array\n");
 							puzzle[userpicks.row][userpicks.col] = userpicks.numberChoice;
-							printPuzzle(puzzle);
-							exit(0);
+							return puzzle;
+							
 						}
-						//printf("\t%d" , puzzle[i][j]);
+						printf("\t%d" , puzzle[i][j]);
 						
 
 					}
 					printf("\n");
 				}
-
-    return 1;
+	
+    return puzzle;
 }	
 
 int checkPuzzle(Square *** sudoku, Box ** boxes)

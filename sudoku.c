@@ -17,16 +17,11 @@ int main()
 	//int progress;
 	Sudoku * sudoku;
 	//int shots = 0;
-
 	puzzle = createPuzzle();
-
 	sudoku = setUpPuzzle(puzzle);
-
 	printPuzzle(sudoku->squares);
-
 	//UserSelection userSelection;
 	struct UserSelection userpicks;
-		
 	sudoku = introduceGame();
 	//while (UNSOLVED > 0)
 	//{
@@ -34,8 +29,19 @@ int main()
 		 userpicks = makeSelection();
 		 //printf( "userSelection  row : %d\n", userpicks.row);
 		 //try to update the puzzle checking the userpicks is valid
-		 updateSudoku2(puzzle, userpicks);
+		 puzzle = updateSudoku2(puzzle, userpicks);
 		 //printPuzzle(sudoku->squares);
+		 int i,j;
+		 for(i=0;i<SIZE_ROWS;i++)
+			{
+				for(j=0;j<SIZE_COLUMNS;j++)
+				{
+					printf("\t%d" , puzzle[i][j]);
+				}
+				printf("\n");
+				}
+		
+	
 		
 	//}
 	

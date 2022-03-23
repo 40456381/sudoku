@@ -1,0 +1,1 @@
+cl sudoku.c box.c introduceGame.c puzzle.c row.c square.c -o sudoku
