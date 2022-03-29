@@ -16,13 +16,7 @@ int main()
 	int ** puzzle = createPuzzle();
 	int ** completePuzzle = getCompletePuzzle();
 	int correctMove;
-	//int progress;
-	//Sudoku * sudoku;
-	//int shots = 0;
-	//puzzle = createPuzzle();
-	//setUpPuzzle(puzzle);
 	printPuzzle(puzzle);
-	//UserSelection userSelection;
 	struct UserSelection userpicks;
 	introduceGame();
 	//while (UNSOLVED > 0)
