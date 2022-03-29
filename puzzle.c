@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "sudoku.h"
-
+/* NOTUSING
 Sudoku * createSudoku(Square *** squares, Box ** boxes)
 {
 	Sudoku * sudoku;
@@ -11,34 +11,35 @@ Sudoku * createSudoku(Square *** squares, Box ** boxes)
 	sudoku->boxes = boxes;
 	
 	return sudoku;
-}
+}*/ 
 
-Sudoku * setUpPuzzle(int ** puzzle)
+/* NOT USING
+int ** puzzle; setUpPuzzle(int ** puzzle)
 {
-    Square *** sudoku;
-    Box ** boxes;
+    //Square *** sudoku;
+    //Box ** boxes;
     int i, j, x;
-    int currentBox = 0;
+    //int currentBox = 0;
 
-    sudoku = (Square***)malloc(sizeof(Square**)*9);
-    boxes = createBoxes();
+    //sudoku = (Square***)malloc(sizeof(Square**)*9);
+    //boxes = createBoxes();
 
-    /* loop through rows */
+    // loop through rows 
     for (i = 0; i < SIZE_ROWS; i++)
     {
-        /* malloc space for each row */
-        sudoku[i] = (Square**)malloc(sizeof(Square*)*9);
+        // malloc space for each row 
+        //sudoku[i] = (Square**)malloc(sizeof(Square*)*9);
 
-        /* loop through columns */
+        //loop through columns 
         for (j = 0; j < SIZE_COLUMNS; j++)
         {
-            /* malloc space for each square */
+            //malloc space for each square
             sudoku[i][j] = (Square*)malloc(sizeof(Square)*9);
 
-            /* assign number to sudoku  */
+            // assign number to sudoku  
             sudoku[i][j]->number = puzzle[i][j];
 
-            /* assign row and column numbers to each square */
+            //assign row and column numbers to each square 
             sudoku[i][j]->row = i;
             sudoku[i][j]->column = j;
             sudoku[i][j]->solvable = 9;
@@ -66,10 +67,10 @@ Sudoku * setUpPuzzle(int ** puzzle)
             currentBox = 6;
     }
 
-    /* loop through rows */
+    //loop through rows 
     for (i = 0; i < SIZE_ROWS; i++)
     {
-        /* loop through columns */
+        //loop through columns 
         for (j = 0; j < SIZE_COLUMNS; j++)
         {
             if (sudoku[i][j]->number != 0)
@@ -85,7 +86,9 @@ Sudoku * setUpPuzzle(int ** puzzle)
     return createSudoku(sudoku, boxes);
 
 }
+*/
 
+/* NOT USING
 int updateSudoku(Square *** sudoku, int row, int column)
 {
     int x;
@@ -113,6 +116,7 @@ int updateSudoku(Square *** sudoku, int row, int column)
     return 1;
 
 }
+*/
 
 UserSelection makeSelection()
 {
@@ -122,7 +126,7 @@ UserSelection makeSelection()
 		//int col = 0;
 		//int numberChoice = 0;
 		int correct = 0;
-		printf("please select a row that you would like to alter: ");
+		printf("please select a row between 1 and 9 that you would like to alter: ");
 		scanf("%d", &userpicks.row);
 		while (correct == 0)
 		{	
@@ -143,7 +147,7 @@ UserSelection makeSelection()
 		//set correct back to N for next check
 		correct = 0;
 		//printf("row selection is %d \n", userpicks.row);
-		printf("please select a column that you would like to alter:  ");
+		printf("please select a column between 1 and 9 that you would like to alter:  ");
 		scanf("%d", &userpicks.col);
 		//printf(" col entered is %i \n", col);
 		while (correct == 0)
@@ -165,7 +169,7 @@ UserSelection makeSelection()
 		correct = 0;
 		//printf("column selection is %d", userpicks.col);
 		printf("\n");
-		printf("please enter the number that you would like to place in this position:  ");
+		printf("please enter the number between 1 and 9 that you would like to place in this position:  ");
 		scanf("%d", &userpicks.numberChoice);
 		printf("\n");
 		
@@ -192,85 +196,94 @@ UserSelection makeSelection()
 	return userpicks;
 }
 
-Square *** updateSudoku2(Square *** puzzle, UserSelection userpicks)
-{
+int ** updateSudoku2(int ** puzzle, UserSelection userpicks)
+{	
 			printf("what is userpicks.numberChoice %d \n", userpicks.numberChoice);
-			printf("what is userpicks.row  %d \n", userpicks.row);
-			printf("what is userpicks.col  %d \n", userpicks.col);   
+  		
 			int x, y;
 			int i, j;
 			userpicks.row--;
 			userpicks.col--;
-			/* loop through rows */
+            printf("what is userpicks.row  %d \n", userpicks.row);
+			printf("what is userpicks.col  %d \n", userpicks.col);
+			// loop through rows 
 			for (i = 0; i < SIZE_ROWS; i++)
 				
-				{
-					printf("what row in the loop %i \n", i);
+				{ 
+					//printf("what row in the loop %i \n", i);
 					
-					/* loop through columns */
+					// loop through columns 
 					for (j = 0; j < SIZE_COLUMNS; j++)
 					{
-						printf("what column in the loop %i \n", j);
-						
-						//printf("%d\n", puzzle[i][j]);
+						printf("what is i %i \n", i);
+						printf("what is j %i \n", j);
+						//printf("what is row   %d \n", i); 
+						printf("HERERE %d\n", puzzle[i][j]);				
 						x = puzzle[i][j];
+						//printf("what is x%d \n", x); 
 						y = userpicks.numberChoice;
+						//printf("what is col   %d \n", j); 
 						printf("what is x %d\n", x);
-						if((i == userpicks.row && j == userpicks.col) && (x == y))
+						printf("what is y %d\n", y);
+						if(i == userpicks.row && j == userpicks.col && (x == y))
 							
 						{
 							printf("The selection you have made is already holding your number\n");
 							//TODO need to ask again
-							//exit(0);
+							return puzzle;
 						}
-						else if (x == 0) //the position is empty so we can update the array
+						else if (i == userpicks.row && j == userpicks.col && (x == 0)) //the position is empty so we can update the array
 						{
 							printf("updating the array\n");
 							puzzle[userpicks.row][userpicks.col] = userpicks.numberChoice;
 							return puzzle;
 							
 						}
-						printf("\t%d" , puzzle[i][j]);
+						//printf("\t%d" , puzzle[i][j]);
 						
-
-					}
 					printf("\n");
+					}
+					
 				}
 	
     return puzzle;
+	
 }	
 
-int checkPuzzle(Square *** sudoku, Box ** boxes)
-{
-    int i, j, x;
 
-    /* loop through rows */
+int checkPuzzle(int ** puzzle, int ** completePuzzle, UserSelection userpicks)
+{
+    int i, j, x, y, row, col, match;
+	//int ** completePuzzle = getCompletePuzzle();
+    // loop through rows 
     for (i = 0; i < SIZE_ROWS; i++)
     {
-        /* loop through columns */
+        //loop through columns 
         for (j = 0; j < SIZE_COLUMNS; j++)
         {
-            if (sudoku[i][j]->solvable == 1)
+			x = completePuzzle[i][j];
+			row = userpicks.row;
+			col = userpicks.col;
+			y =  userpicks.numberChoice;
+            if ((row == i && col == j) && (x == y))
             {
-                solveSquare(sudoku[i][j]);
-                updateSudoku(sudoku, i, j);
-				updateBoxes(sudoku, i ,j); 
-				
-				return 1;
+                //the selection matches
+				printf("match = 1\n");
+				match = 1;
             }
+			else
+			{
+				printf("match = 0\n");
+				match = 0;
+			}
 
         }
 
     }
-	
-	if (boxSingles(sudoku, boxes))
-	{
-		return 1;
-	}
-	
-	return checkRows(sudoku, boxes);
+	return match;
     
 }
+
 
 int ** createPuzzle()
 {
@@ -303,7 +316,38 @@ int ** createPuzzle()
     return puzzle;
 }
 
-void printPuzzle(Square *** puzzle)
+int ** getCompletePuzzle()
+{
+    int ** completePuzzle;
+    int i, j;
+    int array[9][9]= {3, 1, 9,      7, 8, 2,     6, 4, 5,
+                      4, 7, 2,      6, 9, 5,     3, 8, 1,
+                      5, 8, 6,      4, 1, 3,     2, 9, 7,
+
+                      8, 9, 4,      5, 0, 7,     1, 2, 6,
+                      1, 2, 5,      8, 6, 9,     7, 3, 4,
+                      7, 6, 3,      2, 4, 1,     9, 5, 8,
+
+                      2, 5, 8,      9, 7, 6,     4, 1, 3,
+                      6, 4, 1,      3, 2, 8,     5, 7, 9,
+                      9, 3, 7,      1, 5, 4,     8, 6, 2 };
+
+    completePuzzle = (int**)malloc(sizeof(int*)*9);
+
+    for (i = 0; i < 9; i++)
+    {
+        completePuzzle[i] = (int*)malloc(sizeof(int)*9);
+
+        for (j = 0; j < 9; j++)
+        {
+            completePuzzle[i][j] = array[i][j];
+        }
+    }
+
+    return completePuzzle;
+}
+
+void ** printPuzzle(int ** puzzle)
 {
     int i, j;
 
@@ -314,7 +358,7 @@ void printPuzzle(Square *** puzzle)
         /* print each row */
         for (j = 0; j < SIZE_COLUMNS; j++)
         {
-            printf(" %d ", puzzle[i][j]->number);
+            printf(" %d ", puzzle[i][j]);
 
             if (((j + 1) % 3) == 0)
             {
@@ -328,3 +372,4 @@ void printPuzzle(Square *** puzzle)
         }
     }
 }
+

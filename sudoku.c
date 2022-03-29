@@ -13,16 +13,18 @@ int SIZE_COLUMNS = 9;
 
 int main()
 {
-	int ** puzzle;
+	int ** puzzle = createPuzzle();
+	int ** completePuzzle = getCompletePuzzle();
+	int correctMove;
 	//int progress;
-	Sudoku * sudoku;
+	//Sudoku * sudoku;
 	//int shots = 0;
-	puzzle = createPuzzle();
-	sudoku = setUpPuzzle(puzzle);
-	printPuzzle(sudoku->squares);
+	//puzzle = createPuzzle();
+	//setUpPuzzle(puzzle);
+	printPuzzle(puzzle);
 	//UserSelection userSelection;
 	struct UserSelection userpicks;
-	sudoku = introduceGame();
+	introduceGame();
 	//while (UNSOLVED > 0)
 	//{
 
@@ -30,7 +32,17 @@ int main()
 		 //printf( "userSelection  row : %d\n", userpicks.row);
 		 //try to update the puzzle checking the userpicks is valid
 		 puzzle = updateSudoku2(puzzle, userpicks);
-		 //printPuzzle(sudoku->squares);
+		 
+		 //correctMove = checkPuzzle(puzzle, completePuzzle, userpicks);
+		 /*if (correctMove = 1)
+		 {
+			 printPuzzle(puzzle);
+		 }
+		 else
+		 {
+			 printf("wrong move one life gone\n");
+		 }*/
+		 /*
 		 int i,j;
 		 for(i=0;i<SIZE_ROWS;i++)
 			{
@@ -38,12 +50,14 @@ int main()
 				{
 					printf("\t%d" , puzzle[i][j]);
 				}
-				printf("\n");
-				}
+					printf("\n");
+			}
+			
+				//printPuzzle(puzzle);
 		
-	//test for gi changes
+	//test for changes
 		
-	//}
+
 	
 /*
     puzzle = createPuzzle();

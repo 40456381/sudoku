@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include "sudoku.h"
 
-Sudoku * introduceGame()
+void  introduceGame()
 {
-	Sudoku * sudoku;
+	//Sudoku * sudoku;
+	int ** puzzle;
 	printf("\nHELLLO AGAIN");
 	int selection;
 	printf("\nWELCOME TO CLARK'S SUDUKO GAME - MADE IN C\n"
@@ -31,8 +32,8 @@ Sudoku * introduceGame()
 		
 		//int ** puzzle;
 		//int progress;
-		Sudoku * sudoku;
-		int shots = 0;
+		//Sudoku * sudoku;
+		//int shots = 0;
 
 		//puzzle = createPuzzle();
 
@@ -119,5 +120,5 @@ Sudoku * introduceGame()
 		exit(0);
 		break;
 	}
-	return sudoku;
+	return ;
 }
