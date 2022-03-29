@@ -225,21 +225,25 @@ int ** updateSudoku2(int ** puzzle, UserSelection userpicks)
 						//printf("what is col   %d \n", j); 
 						printf("what is x %d\n", x);
 						printf("what is y %d\n", y);
-						if(i == userpicks.row && j == userpicks.col && (x == y))
-							
-						{						
-								printf("The selection you have made is already holding your number\n");
-								//need to ask for the selection again
-								userpicks = makeSelection();
-							
-								return puzzle;
-						}
-						else if (i == userpicks.row && j == userpicks.col && (x == 0)) //the position is empty so we can update the array
+						while (correctPick == 0)
 						{
-							printf("updating the array\n");
-							puzzle[userpicks.row][userpicks.col] = userpicks.numberChoice;
-							return puzzle;
-							
+							if(i == userpicks.row && j == userpicks.col && (x == y))
+								
+							{						
+									printf("The selection you have made is already holding your number\n");
+									//need to ask for the selection again
+									userpicks = makeSelection();
+									correctPick = 0;
+									return puzzle;
+							}
+							else if (i == userpicks.row && j == userpicks.col && (x == 0)) //the position is empty so we can update the array
+							{
+								printf("updating the array\n");
+								puzzle[userpicks.row][userpicks.col] = userpicks.numberChoice;
+								correctPick = 1;
+								return puzzle;
+								
+							}
 						}
 						//printf("\t%d" , puzzle[i][j]);
 						
