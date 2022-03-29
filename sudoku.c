@@ -16,9 +16,10 @@ int main()
 	int ** puzzle = createPuzzle();
 	int ** completePuzzle = getCompletePuzzle();
 	int correctMove;
+	int gametype;
 	printPuzzle(puzzle);
 	struct UserSelection userpicks;
-	introduceGame();
+	gametype = introduceGame();
 	//while (UNSOLVED > 0)
 	//{
 
