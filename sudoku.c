@@ -29,7 +29,7 @@ int main()
 	//{
 
 		 userpicks = makeSelection();
-		 //printf( "userSelection  row : %d\n", userpicks.row);
+
 		 //try to update the puzzle checking the userpicks is valid
 		 puzzle = updateSudoku2(puzzle, userpicks);
 		 
