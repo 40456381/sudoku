@@ -35,5 +35,6 @@ struct UserSelection makeSelection(void);
 struct GoodPickWithPuzzle updateSudoku2(int ** puzzle, UserSelection userpicks, GoodPickWithPuzzle goodPick);
 //returns 1 if correct slot 0 if wrong
 int checkPuzzle(int ** puzzle, int ** completePuzzle, UserSelection userpicks);
+int checkPuzzleComplete(int ** puzzle);
 
 #endif

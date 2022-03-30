@@ -93,8 +93,8 @@ GoodPickWithPuzzle updateSudoku2(int ** puzzle, UserSelection userpicks, GoodPic
 			int i, j;
 			userpicks.row--;
 			userpicks.col--;
-            printf("what is userpicks.row  %d \n", userpicks.row);
-			printf("what is userpicks.col  %d \n", userpicks.col);
+            //printf("what is userpicks.row  %d \n", userpicks.row);
+			//printf("what is userpicks.col  %d \n", userpicks.col);
 			// loop through rows 
 			for (i = 0; i < SIZE_ROWS; i++)
 				
@@ -104,17 +104,17 @@ GoodPickWithPuzzle updateSudoku2(int ** puzzle, UserSelection userpicks, GoodPic
 					// loop through columns 
 					for (j = 0; j < SIZE_COLUMNS; j++)
 					{
-						printf("what is i %i \n", i);
-						printf("what is j %i \n", j);
+						//printf("what is i %i \n", i);
+						//printf("what is j %i \n", j);
 						//printf("what is row   %d \n", i); 
 						//printf("what is goodPick.puzzle  %d \n", goodPick.puzzle[i][j]);
-						printf("HERERE %d\n", puzzle[i][j]);				
+						//printf("HERERE %d\n", puzzle[i][j]);				
 						x = puzzle[i][j];
 						//printf("what is x%d \n", x); 
 						y = userpicks.numberChoice;
 						//printf("what is col   %d \n", j); 
-						printf("what is x %d\n", x);
-						printf("what is y %d\n", y);
+						//printf("what is x %d\n", x);
+						//printf("what is y %d\n", y);
 
 							if(i == userpicks.row && j == userpicks.col && (x == y) || (i == userpicks.row && j == userpicks.col && (x != 0)))
 								
@@ -133,8 +133,7 @@ GoodPickWithPuzzle updateSudoku2(int ** puzzle, UserSelection userpicks, GoodPic
 								puzzle[userpicks.row][userpicks.col] = userpicks.numberChoice;
 								goodPick.correctPick = userpicks.numberChoice;
 								goodPick.puzzleUpdated = 'Y';
-								printf("GET HERE AYE?!?!?!?!?!");
-								printf("what is goodPick.puzzleUpdated %c\n", goodPick.puzzleUpdated);
+								
 								return goodPick;
 								
 							}
@@ -151,7 +150,10 @@ GoodPickWithPuzzle updateSudoku2(int ** puzzle, UserSelection userpicks, GoodPic
 
 int checkPuzzle(int ** puzzle, int ** completePuzzle, UserSelection userpicks)
 {
-    int i, j, x, y, row, col, match;
+	printf("TAP OF checkPuzzle\n"); 
+    int i = 0, j = 0, x = 0, y = 0, row = 0, col = 0, match = 0;
+	userpicks.row--;
+	userpicks.col--;
 	//int ** completePuzzle = getCompletePuzzle();
     // loop through rows 
     for (i = 0; i < SIZE_ROWS; i++)
@@ -159,26 +161,40 @@ int checkPuzzle(int ** puzzle, int ** completePuzzle, UserSelection userpicks)
         //loop through columns 
         for (j = 0; j < SIZE_COLUMNS; j++)
         {
+			
 			x = completePuzzle[i][j];
 			row = userpicks.row;
 			col = userpicks.col;
 			y =  userpicks.numberChoice;
-            if ((row == i && col == j) && (x == y))
+			//printf("what is row %d \n", row); 
+			//printf("what is col %d \n", col);
+			
+			//printf("what is x %d \n", x); 
+			//printf("what is y %d \n", y);
+            if (i == row && j == col  && x == y)
             {
                 //the selection matches
-				printf("match = 1\n");
 				match = 1;
+				row++;
+				col++;
+				printf("you have found a correct match for row %i and column %i\n", row, col);
+				return match;
             }
 			else
 			{
-				printf("match = 0\n");
+				row++;
+				col++;
+				printf("you have found a incorrect match for row %i and column %i reverting back selection\n", row, col);
+				puzzle[userpicks.row][userpicks.col] = 0;
 				match = 0;
+				return match;
 			}
-
+			
         }
-
-    }
-	return match;
+     
+	}
+	
+	return match;	
     
 }
 
@@ -222,7 +238,7 @@ int ** getCompletePuzzle()
                       4, 7, 2,      6, 9, 5,     3, 8, 1,
                       5, 8, 6,      4, 1, 3,     2, 9, 7,
 
-                      8, 9, 4,      5, 0, 7,     1, 2, 6,
+                      8, 9, 4,      5, 3, 7,     1, 2, 6,
                       1, 2, 5,      8, 6, 9,     7, 3, 4,
                       7, 6, 3,      2, 4, 1,     9, 5, 8,
 
@@ -270,5 +286,31 @@ void ** printPuzzle(int ** puzzle)
         }
     }
 	return puzzle;
+}
+
+int  checkPuzzleComplete(int ** puzzle)
+{
+	int x, i, j;
+	for (i = 0; i < SIZE_ROWS; i++)
+    {
+        //loop through columns 
+        for (j = 0; j < SIZE_COLUMNS; j++)
+        {
+			x = puzzle[i][j];
+
+			if (x == 0)
+			{
+				printf("\npuzzle has empty slot\n");
+				return 1; 
+			}
+			else
+			{
+				printf("\npuzzle has completed\n");
+				return 0;
+			}
+		}
+		
+	}
+	return 0;	
 }
 
