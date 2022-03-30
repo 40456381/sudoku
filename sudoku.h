@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 //GLOBAL variable
 extern int UNSOLVED ; /*000000000*/
@@ -18,12 +19,20 @@ typedef struct UserSelection
 	
 } UserSelection;
 
+typedef struct GoodPickWithPuzzle
+{
+	int ** puzzle;
+	int correctPick;
+	char puzzleUpdated;
+	
+} GoodPickWithPuzzle;
+
 int  introduceGame();
 int ** createPuzzle();
 void ** printPuzzle(int ** puzzle);
 int ** getCompletePuzzle();
 struct UserSelection makeSelection(void);
-int ** updateSudoku2(int ** puzzle, UserSelection);
+struct GoodPickWithPuzzle updateSudoku2(int ** puzzle, UserSelection userpicks, GoodPickWithPuzzle goodPick);
 //returns 1 if correct slot 0 if wrong
 int checkPuzzle(int ** puzzle, int ** completePuzzle, UserSelection userpicks);
 
